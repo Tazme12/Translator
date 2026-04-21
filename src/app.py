@@ -4,8 +4,6 @@ from translate import Translator
 
 listen = sr.Recognizer()
 
-from_lang = autodetect
-
 app = Flask(__name__)
 
 @app.route('/')
@@ -22,7 +20,6 @@ def chooseLanguage(chooseLanguage):
 
 translator = Translator(to_lang=chooseLanguage)
 
-
 @app.route('/get-text', methods=['GET', 'POST'])
 def writtenTranslation():
     data = request.get_json()
@@ -33,6 +30,7 @@ def writtenTranslation():
     
     else:
         translation = translator.translate(text)
+        return jsonify({'success': True, 'phrase': translation})
 
 @app.route('/get-speech', methods=['GET', 'POST'])
 def spokenTranslation():
@@ -54,6 +52,7 @@ def spokenTranslation():
 
                 else:
                     translation = translator.translate(text)
+                    return jsonify({'success': True, 'phrase': translation})
     
         except sr.UnknownValueError:
             print("Could not understand audio")
