@@ -1,24 +1,29 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import speech_recognition as sr
 from translate import Translator
 
 listen = sr.Recognizer()
 
 app = Flask(__name__)
+CORS(app)
+
+translator = Translator(from_lang='en', to_lang='en')
 
 @app.route('/')
 def index():
     pass
 
 @app.route('/choose-language', methods=['GET', 'POST'])
-def chooseLanguage(chooseLanguage):
+def chooseLanguage():
     data = request.get_json()
-    chooseLanguage = data.get('language')
+    language = data.get('language')
 
     if language == 'none':
         return jsonify({'success': False, 'error': 'Please select a language.'})
+    
+    translator.__init__(from_lang='en', to_lang=language)
 
-translator = Translator(to_lang=chooseLanguage)
 
 @app.route('/get-text', methods=['GET', 'POST'])
 def writtenTranslation():

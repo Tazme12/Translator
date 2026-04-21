@@ -12,7 +12,7 @@ function getLanguage() {
     })
     .then(data => {
         if(data.success) {
-            alert(data.success);
+            alert(data.message);
         } else {
             alert(data.error);
         }
@@ -33,7 +33,9 @@ function getTextInput() {
     })
     .then(data => {
         if(data.success) {
-            alert(data.message);
+            let output = document.getElementById('output');
+            let html = `<p>${data.phrase}</p>`;
+            output.innerHTML = html;
         } else {
             alert(data.error);
         }
@@ -52,7 +54,9 @@ function getSpeechInput() {
     })
     .then(data => {
         if(data.success) {
-            alert(data.message);
+            let output = document.getElementById('output');
+            let html = `<p>${data.phrase}</p>`;
+            output.innerHTML = html;
         } else {
             alert(data.error);
         }

@@ -8,7 +8,7 @@
 </head>
 <body>
     <main>
-        <select class="language-select" id="language-select">
+        <select class="language-select" id="language-select" onchange="getLanguage()">
             <option value="none">Please select a language</option>
             <option value="en">English</option>
             <option value="fr">French</option>
@@ -21,6 +21,7 @@
             <input type="text" id="text" name="text" placeholder="Enter text here...">
             <button type="button" onclick="getTextInput()">Translate</button>
         </form>
+        <div id="output"></div>
         <form class="speech-input">
             <h1>Say a phrase to be translated</h1>
             <button type="button" onclick="getSpeechInput()"><img src="../assets/microphone.png" alt="Microphone"></button>
