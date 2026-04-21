@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 import speech_recognition as sr
-import translate
+from translate import Translator
 
 listen = sr.Recognizer()
 
@@ -13,12 +13,15 @@ def index():
     pass
 
 @app.route('/choose-language', methods=['GET', 'POST'])
-def chooseLanguage():
+def chooseLanguage(chooseLanguage):
     data = request.get_json()
-    language = data.get('language')
+    chooseLanguage = data.get('language')
 
     if language == 'none':
         return jsonify({'success': False, 'error': 'Please select a language.'})
+
+translator = Translator(to_lang=chooseLanguage)
+
 
 @app.route('/get-text', methods=['GET', 'POST'])
 def writtenTranslation():
@@ -27,6 +30,9 @@ def writtenTranslation():
 
     if text == '':
         return jsonify({'success': False, 'error': 'Please enter text to translate.'})
+    
+    else:
+        translation = translator.translate(text)
 
 @app.route('/get-speech', methods=['GET', 'POST'])
 def spokenTranslation():
@@ -45,6 +51,9 @@ def spokenTranslation():
                 if "exit" in text:
                     print("Exiting program...")
                     break
+
+                else:
+                    translation = translator.translate(text)
     
         except sr.UnknownValueError:
             print("Could not understand audio")
