@@ -1,5 +1,8 @@
 from flask import Flask, request, jsonify
+import speech_recognition as sr
 import translate
+
+listen = sr.Recognizer()
 
 app = Flask(__name__)
 
@@ -10,6 +13,7 @@ def index():
 @app.route('/get-text', methods=['POST', 'GET'])
 def writtenTranslation():
     data = request.get_json()
+    text = data.get('text')
 
 @app.route('/get-speech', methods=['POST', 'GET'])
 def spokenTranslation():
