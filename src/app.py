@@ -23,7 +23,7 @@ def spokenTranslation():
             with sr.Microphone() as source:
                 print("Listening...")
                 
-                r.adjust_for_ambient_noise(source, duration=0.2)
+                listen.adjust_for_ambient_noise(source, duration=0.2)
                 audio = listen.listen(source)
                 text = listen.recognize_google(audio)
                 text = text.lower()  
