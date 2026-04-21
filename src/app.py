@@ -4,18 +4,31 @@ import translate
 
 listen = sr.Recognizer()
 
+from_lang = autodetect
+
 app = Flask(__name__)
 
 @app.route('/')
 def index():
     pass
 
-@app.route('/get-text', methods=['POST', 'GET'])
+@app.route('/choose-language', methods=['GET', 'POST'])
+def chooseLanguage():
+    data = request.get_json()
+    language = data.get('language')
+
+    if language == 'none':
+        return jsonify({'success': False, 'error': 'Please select a language.'})
+
+@app.route('/get-text', methods=['GET', 'POST'])
 def writtenTranslation():
     data = request.get_json()
     text = data.get('text')
 
-@app.route('/get-speech', methods=['POST', 'GET'])
+    if text == '':
+        return jsonify({'success': False, 'error': 'Please enter text to translate.'})
+
+@app.route('/get-speech', methods=['GET', 'POST'])
 def spokenTranslation():
     data = request.get_json()
     while True:
