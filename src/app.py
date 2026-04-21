@@ -18,6 +18,23 @@ def writtenTranslation():
 @app.route('/get-speech', methods=['POST', 'GET'])
 def spokenTranslation():
     data = request.get_json()
+    while True:
+        try:
+            with sr.Microphone() as source:
+                print("Listening...")
+                
+                r.adjust_for_ambient_noise(source, duration=0.2)
+                audio = listen.listen(source)
+                text = listen.recognize_google(audio)
+                text = text.lower()  
+                print("You said:", text)
+                
+                if "exit" in text:
+                    print("Exiting program...")
+                    break
+    
+        except sr.UnknownValueError:
+            print("Could not understand audio")
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
