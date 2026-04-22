@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'regular';
+    src: url(../../fonts/Montserrat-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: 'italic';
+    src: url(../../fonts/Montserrat-Italic-VariableFont_wght.ttf);
+}
