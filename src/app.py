@@ -23,7 +23,7 @@ def chooseLanguage():
         return jsonify({'success': False, 'error': 'Please select a language.'})
     
     translator.__init__(from_lang='en', to_lang=language)
-
+    return jsonify({'success': True, 'confirmation': 'Language selected'})
 
 @app.route('/get-text', methods=['GET', 'POST'])
 def writtenTranslation():

@@ -12,7 +12,8 @@ function getLanguage() {
     })
     .then(data => {
         if(data.success) {
-            alert(data.message);
+            processDiv = document.getElementById('process');
+            processDiv.innerHTML = `<p>${data.confirmation}</p>`;
         } else {
             alert(data.error);
         }
