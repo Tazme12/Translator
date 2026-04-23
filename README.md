@@ -38,18 +38,13 @@ Translator/
 
 - Python 3.13+
 - PyAudio (for microphone input)
+- Live server VS Code extension
 
 ## Installation
 
 1. Clone the repository and navigate to the project folder.
 
-2. Create and activate a virtual environment:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate
-   ```
-
-3. Install dependencies:
+2. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
@@ -61,11 +56,13 @@ Translator/
    python src/app.py
    ```
 
-2. Open `index.html` in your browser.
+2. Right click `index.html` in your files.
 
-3. Select a target language from the dropdown.
+3. Click "Open with Live Server".
 
-4. Either type text and click **Translate**, or click the microphone button to speak a phrase.
+4. Select a target language from the dropdown.
+
+5. Either type text and click **Translate**, or click the microphone button to speak a phrase.
 
 ## Dependencies
 
