@@ -2,12 +2,10 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import speech_recognition as sr
 from translate import Translator
-
 listen = sr.Recognizer()
 
 app = Flask(__name__)
 CORS(app)
-
 translator = Translator(from_lang='en', to_lang='en')
 
 @app.route('/')
@@ -40,14 +38,12 @@ def spokenTranslation():
     data = request.get_json()
     while True:
         try:
-            with sr.Microphone() as source:
-                print("Listening...")
-                
+            with sr.Microphone() as source:     
                 listen.adjust_for_ambient_noise(source, duration=0.2)
                 audio = listen.listen(source)
                 text = listen.recognize_google(audio)
                 text = text.lower()  
-                print("You said:", text)
+                print(text)
                 
                 if "exit" in text:
                     print("Exiting program...")
