@@ -21,7 +21,6 @@ def chooseLanguage():
 
     if language == 'none':
         return jsonify({'success': False, 'error': 'Please select a language.'})
-    
     translator.__init__(from_lang='en', to_lang=language)
     return jsonify({'success': True, 'confirmation': 'Language selected'})
 
@@ -32,7 +31,6 @@ def writtenTranslation():
 
     if text == '':
         return jsonify({'success': False, 'error': 'Please enter text to translate.'})
-    
     else:
         translation = translator.translate(text)
         return jsonify({'success': True, 'phrase': translation})
@@ -54,7 +52,6 @@ def spokenTranslation():
                 if "exit" in text:
                     print("Exiting program...")
                     break
-
                 else:
                     translation = translator.translate(text)
                     return jsonify({'success': True, 'phrase': translation})
