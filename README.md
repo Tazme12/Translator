@@ -12,11 +12,11 @@ A web-based language translator that supports both text and speech input, built 
 
 | Language   | Code |
 |------------|------|
-| English    | en   |
 | French     | fr   |
 | Spanish    | es   |
 | Portuguese | pt   |
 | German     | de   |
+| Japanese   | ja   |
 
 ## Project Structure
 
